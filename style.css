@@ -1,4 +1,57 @@
+@font-face {
+    font-family: Britanica Bold;
+    src: url('/Fonts/BritanicaBold.ttf');
+}
+
+.world-cup-announce{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    background-color: #C50E19;
+}
+.world-cup-announce:nth-child(1){
+    font-family: Britanica;
+    color: white;
+    font-size: 16pt;
+}
+
+.logo{
+    margin-left: 5%;
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+}  
+
+#icon-wc{
+    height: 24px;
+    width: auto;
+}
+
+.score-icon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#score-icon{
+    height: 35px;
+    width: auto;
+}
+
+.news-icon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#news-icon{
+    height: 35px;
+    width: auto;
+}
+
 .top-menu{
+    margin: 0px;
     background-color: #252122;
     display: flex;
     flex-direction: row;
@@ -6,24 +59,42 @@
     justify-content: center;
     align-items: center;
     width: auto;
-    min-height: 100px;
-    height: fit-content;
-    gap: 40px;
+    height: 100px;
+    gap: 50px;
+    font-family: Britanica;
 }
 
-.top-menu:nth-child(1){
-    color: white;
-}
-
-.top-menu:nth-child(2){
-    color: white;
-}
-
-.login-href-class{
+.red-stroke{
     margin-left: auto;
-    margin-right: 30px; 
+    height: 100px;
+    width: auto;
+}
+
+#Rezultatet {
+    color: white;
+    font-size: 24px;
+}
+
+
+#Lajmet {
+    color: white;
+    font-size: 24px;
+}
+
+.login-class{
+    margin-left: auto;
+    margin-right: 50px; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#user-icon{
+    height: 35px;
+    width: auto;
 }
 
 #login-href {
     color: white;
+    font-size: 24px;
 }
