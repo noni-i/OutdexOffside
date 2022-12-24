@@ -3,6 +3,21 @@
     src: url('/Fonts/BritanicaBold.ttf');
 }
 
+.navbar{
+    overflow: hidden;
+    position: fixed; 
+    top: 0; 
+    width: 100%;
+    float: left;
+    margin: 0 0 1em 0;
+	padding: 0;
+    left: 0;
+}
+
+.main{
+    margin-top: 111px;
+}
+
 .world-cup-announce{
     display: flex;
     justify-content: center;
@@ -32,6 +47,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center;
 }
 
 #score-icon{
@@ -62,23 +78,26 @@
     height: 100px;
     gap: 50px;
     font-family: Britanica;
+    text-decoration: none;
 }
 
 .red-stroke{
     margin-left: auto;
-    height: 100px;
+    height: auto;
     width: auto;
 }
 
 #Rezultatet {
     color: white;
     font-size: 24px;
+    text-decoration: none;
 }
 
 
 #Lajmet {
     color: white;
     font-size: 24px;
+    text-decoration: none;
 }
 
 .login-class{
@@ -97,4 +116,380 @@
 #login-href {
     color: white;
     font-size: 24px;
+    text-decoration: none;
 }
+
+.body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    gap: 5%;
+}
+.scores-table {
+    margin-top: 1px;
+    width: 55%;
+    height: auto;
+    background-color: #252122;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#month-header{
+    align-self: flex-start;
+    font-size: 20px;
+    font-family: Britanica;
+    color: white;
+    margin-bottom: 5%;
+}
+
+#score-date{
+    font-family: Britanica;
+    color: gray;
+}
+
+.date {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content:space-between;
+    align-self: center;
+    padding-bottom: 20px;
+}
+
+.date-arrow-button{
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+
+.data-majtas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4%;
+}
+
+#datepicker {
+    border: 2px;
+    width: 300px;
+    height: 40px;
+    background-color: gray;
+    border-radius: 20px;
+    font-family: Britanica;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    font-size: larger;
+}
+
+#calendar-icon{
+    height: 34px;
+    width: auto;
+    margin-left: 6px;
+}
+
+.date-button{
+    width: 120px;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid gray;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Britanica;
+    color: white;
+}
+
+.date-button:hover{
+    border-color: white;
+}
+
+.arrow-buttons {
+    
+    height: 20px;
+    width: auto;
+}
+
+#topleagues {
+    color: white;
+    font-family: Britanica;
+    font-size: 26pt;
+}
+
+.pl {
+    font-family: Britanica;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: flex-start;
+    font-size: 20px;
+    gap: 20px;
+    padding-top: 25px;
+    text-decoration: none;
+}
+
+.pl-icon {
+    height: 35px;
+    width: auto;
+}
+
+#list-data{
+    border-bottom: 1px solid gray;
+    
+}
+
+.ligat{
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    border-bottom: 1px solid gray;
+    display: none;
+}
+
+.table-icons{
+    height: 22px;
+}
+
+.tableleagues{
+    font-family: Britanica;
+    color: white;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.matches{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Britanica;
+    color: white;
+    font-size: 20px;
+    border-bottom: 1px solid gray;
+    flex-direction: column;
+}
+
+.match{
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.bodylogin{
+    display: flex;
+    justify-content: center;
+
+}
+
+.login{
+    font-family: Britanica;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 550px;
+    flex-direction: column;
+}
+
+.button-signup{
+    background-color: gray;
+    font-family: Britanica;
+    color: white;
+    font-size: 20px;
+    height: 60px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.button-signup:hover{
+    background-color: rgb(216, 216, 216);
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.buttoniconplustext{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 27%;
+}
+
+.osedivider{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftline{
+    height: 0%;
+    min-width: 43%;
+    border-color:#252122;
+}
+
+.rightline{
+    height: 0%;
+    min-width: 43%;
+    border-color: #252122;
+}
+
+.email{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.kusht{
+    text-align: left;
+}
+
+.input{
+    background-color: black;
+    height: 50px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    color: white;
+    font-family: inherit;
+    font-size: 18px;
+}
+
+
+.password{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.checkbox{
+    display: flex;
+    align-items: flex-start;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: black;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 25px;
+  height: 25px;
+  border: 2px solid currentColor;
+  border-radius: 5px;
+  transform: translateY(-0.075em);
+  margin-top: 20px;
+}
+
+input[type="checkbox"]:checked{
+    background-color: white;
+    display: grid;
+}
+
+.divider{
+    width: 100%;
+    height: 0px;
+    border-color:#252122;
+}
+
+.checkbox2{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.button-signup-final{
+    background-color:#252122;
+    font-family: Britanica;
+    color: white;
+    font-size: 20px;
+    height: 60px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.button-signup-final:hover{
+    cursor: not-allowed;
+}
+
+.body-news{
+    display: flex;
+    justify-content: center;
+}
+
+.football-news{
+    margin-top: 1px;
+    background-color: #252122;
+    width: 80%;
+    font-family: Britanica;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.lajmi-par{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-left: 2%;
+    width: fit-content;
+    justify-self: center;
+    text-decoration: none;
+    color: white;
+}
+
+#div-lajmi-par{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 21px;
+    min-width: fit-content;
+}
+
+.lajmi-par :hover{
+    text-decoration: dashed;
+}
+
+.lajmi-par:hover {
+    color: #C50E19;
+    cursor: pointer;
+  }
+
+  .lajmi-par:hover > #photo{
+    opacity: 0.7;
+  }
+
+  .pl:hover{
+    color: gray;
+  }
+
+  #datepicker:hover{
+    cursor: pointer;
+    border: 2px solid white;
+  }
+
+  #botrori{
+    color: white;
+  }
+
+  #botrori:hover{
+    color: gray;
+  }
+
+  #Rezultatet:hover{
+    color: gray;
+  }
+
+  #Lajmet:hover{
+    color: gray;
+  }
+
+  #login-href:hover{
+    color: gray;
+  }
