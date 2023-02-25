@@ -111,10 +111,7 @@ $(function() {
               }
             }
           }
-
-
         }
-
         if(!games[d].hasOwnProperty("World Cup")){
           document.getElementById('wcmatches').innerHTML = "";
           document.getElementsByClassName('ligat')[1].style.display = 'none';
@@ -142,7 +139,6 @@ $(function() {
             }
           }
         }
-
         if(!games[d].hasOwnProperty("LaLiga")){
           document.getElementById('esmatches').innerHTML = "";
           document.getElementsByClassName('ligat')[2].style.display = 'none';
@@ -259,7 +255,7 @@ fetch('scores.json')
         var games = data;
         var x = getFormattedDate(d);
         if(games.hasOwnProperty(x)){
-        document.getElementById('esmatches').innerHTML = "";
+          PL:
         if (!games[x].hasOwnProperty("Premier League")) {
           document.getElementById('plmatches').innerHTML = "";
           document.getElementsByClassName('ligat')[0].style.display = 'none';
@@ -286,10 +282,7 @@ fetch('scores.json')
               }
             }
           }
-
-
         }
-
         if(!games[d].hasOwnProperty("World Cup")){
           document.getElementById('wcmatches').innerHTML = "";
           document.getElementsByClassName('ligat')[1].style.display = 'none';
@@ -317,7 +310,7 @@ fetch('scores.json')
             }
           }
         }
-
+        Esp:
         if(!games[d].hasOwnProperty("LaLiga")){
           document.getElementById('esmatches').innerHTML = "";
           document.getElementsByClassName('ligat')[2].style.display = 'none';
