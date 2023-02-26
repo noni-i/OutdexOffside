@@ -36,7 +36,7 @@
         
         <div class="news-icon">
             <img id="news-icon" src="Icons/news.png">
-            <a id="Lajmet" href="news.html">LAJME</a>
+            <a id="Lajmet" href="news.php">LAJME</a>
         </div>
 
         <div class="red-stroke">
@@ -45,7 +45,7 @@
 
         <div class="login-class">
             <img id="user-icon" src="Icons/user.png">
-            <a id="login-href" href="login.html">KYCU</a>
+            <a id="login-href" href="login.php">KYCU</a>
         </div>
         
     </div>

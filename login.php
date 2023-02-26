@@ -17,19 +17,19 @@
             </div>
             <div class="top-menu">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="index.php">
                     <img src="Icons/outdex-offside-logo.png" alt="logo">
                     </a>
                 </div>
                 
                 <div class="score-icon">
                     <img id="score-icon" src="Icons/score-board.png">
-                    <a id="Rezultatet" href="index.html">&nbsp;REZULTATET</a>
+                    <a id="Rezultatet" href="index.php">&nbsp;REZULTATET</a>
                 </div>
                 
                 <div class="news-icon">
                     <img id="news-icon" src="Icons/news.png">
-                    <a id="Lajmet" href="news.html">LAJME</a>
+                    <a id="Lajmet" href="news.php">LAJME</a>
                 </div>
         
                 <div class="red-stroke">
@@ -69,7 +69,7 @@
             <button class="button-signup" id="bttn" onclick="loginvalid(document.getElementById('emailfield').value, document.getElementById('passwordfield').value)">  
                 Kyçu
             </button>
-            <strong style="margin-top: 30px; margin-bottom: 30px;">Nuk keni llogari?<a href="signup.html" style="color: white; margin-left: 5px;">Regjistrohu</a></strong>
+            <strong style="margin-top: 30px; margin-bottom: 30px;">Nuk keni llogari?<a href="signup.php" style="color: white; margin-left: 5px;">Regjistrohu</a></strong>
         </div>
     </div>
 

@@ -48,7 +48,7 @@ $(function() {
         return 'Ndeshjet e Sotme'
         break;
       case yesterday:
-        return 'Ndeshjet e Djeshme'
+        return 'Ndeshjet e parDjeshme'
         break;
       case tomorrow:
           return 'Ndeshjet e Nesërme'
@@ -225,15 +225,12 @@ function ValidatePassword(){
 function unlockButton(){
   var x = (ValidateEmail(document.getElementById('emailfield').value));
   var y = (ValidatePassword(document.getElementById('passwordfield').value)); 
-  console.log(document.getElementById('myCheckbox').checked == true);
   if(document.getElementById('myCheckbox').checked == true){
     if(x === true && y === true){
       var button = document.getElementsByClassName('button-signup-final')[0];
       button.className = 'button-signup';
       button.addEventListener('click', function() {
-        alert('Krijimi i llogarisë u krye me sukses.');
-        document.getElementById('emailfield').value = "";
-        document.getElementById('passwordfield').value = "";
+        //alert('Krijimi i llogarisë u krye me sukses.');
         document.getElementById('myCheckbox').checked = false;
         document.getElementsByClassName('button-signup')[3].className = 'button-signup-final';
     },{

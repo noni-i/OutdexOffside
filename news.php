@@ -28,7 +28,7 @@
             
             <div class="news-icon" style="background-color: rgb(24, 21, 21); height: 80px; width: fit-content; border-bottom: 5px solid darkred; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; margin-bottom: 20px;">
                 <img id="news-icon" src="Icons/news.png" style="margin-left: 10px;">
-                <a href="news.html" style="color: white;font-size: 24px;text-decoration: none;margin-right: 10px;">LAJME</a>
+                <a href="news.php" style="color: white;font-size: 24px;text-decoration: none;margin-right: 10px;">LAJME</a>
             </div>
     
             <div class="red-stroke">
@@ -37,7 +37,7 @@
     
             <div class="login-class">
                 <img id="user-icon" src="Icons/user.png">
-                <a id="login-href" href="login.html">KYCU</a>
+                <a id="login-href" href="login.php">KYCU</a>
             </div>
             
         </div>

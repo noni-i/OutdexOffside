@@ -1,3 +1,43 @@
+<?php
+    $showAlert = false;
+    $exists = false;
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){ 
+
+    include 'databaza.php';         
+
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $username = substr($email, 0, strpos($email, '@'));
+    $create_datetime = date("Y-m-d H:i:s");
+
+    $sql = "Select * from userat where email='$email'";
+
+    $rezultati = mysqli_query($con, $sql);
+
+    $rreshtat = mysqli_num_rows($rezultati);
+
+    if($rreshtat == 0){
+        if($exists==false){
+        
+        $sql = "INSERT into `userat` (username, password, email, datakrijimit)
+                VALUES ('$username', '" . md5($password) . "', '$email', '$create_datetime')";
+
+        $rezultati = mysqli_query($con, $sql);
+        if ($rezultati) {
+            $showAlert = true; 
+        }
+    }
+}      
+
+    if($rreshtat>0) 
+    {
+        $exists="Emaili është përdorur"; 
+    }
+}
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +46,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Outdex-Offside</title>
     <link rel="shortcut icon" type="image/x-icon" href="Icons/documnt-icon.png" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body style="background-color: #0C0001; zoom: 80%">
+
     <div class="navbar">
     
         <div class="world-cup-announce">
@@ -17,19 +58,19 @@
         </div>
         <div class="top-menu">
             <div class="logo">
-                <a href="index.html">
+                <a href="index.php">
                 <img src="Icons/outdex-offside-logo.png" alt="logo">
                 </a>
             </div>
             
             <div class="score-icon">
                 <img id="score-icon" src="Icons/score-board.png">
-                <a id="Rezultatet" href="index.html">&nbsp;REZULTATET</a>
+                <a id="Rezultatet" href="index.php">&nbsp;REZULTATET</a>
             </div>
             
             <div class="news-icon">
                 <img id="news-icon" src="Icons/news.png">
-                <a id="Lajmet" href="news.html">LAJME</a>
+                <a id="Lajmet" href="news.php">LAJME</a>
             </div>
     
             <div class="red-stroke">
@@ -38,7 +79,7 @@
     
             <div class="login-class">
                 <img id="user-icon" src="Icons/user.png">
-                <a id="login-href" href="login.html">KYCU</a>
+                <a id="login-href" href="login.php">KYCU</a>
             </div>
             
         </div>
@@ -47,7 +88,19 @@
 <div class="main">
     <p>Some text some text some text some text..</p>
   </div>
-
+  <?php
+    
+    if($showAlert) {
+    
+        echo "<script>alert('Sukses! Llogaria juaj eshte krijuar dhe ju mund te kyqeni.');</script>";       
+    }
+        
+    if($exists) {
+        echo "<script>alert('$exists');</script>";  
+     }
+   
+?>
+ 
         <div class="bodylogin">
             <div class="login">
                 <h style="font-size: 30px; padding-top: 30px; margin-bottom: 10px;">Krijoni llogarinë tuaj</h>
@@ -69,6 +122,7 @@
                 </button>
 
                 <div class="osedivider"><hr class="leftline"><p style="color: gray;">apo</p><hr class="rightline"></div>
+                <form action="signup.php" method="post">
                 <div class="email">
                     <p style="text-align: left; margin: 5px 0px 5px 0px;">Email i juaj</p>
                     <input class="input" type="email" name="email" autocomplete="on" id="emailfield" onkeydown="ValidateEmail()">
@@ -95,9 +149,12 @@
                         <p style="text-align: left; margin-left: 10px; justify-self: center;">Unë pranoj Termet dhe Kushtet dhe kam lexuar Politikën <br> e Privatësisë.</p>
                 </div>
                 
-                    <button class="button-signup-final">  
+                    <button class="button-signup-final" type="submit">  
                         Krijoni llogarinë
                     </button>
+                    </form>     
+
+                    
                 <strong style="margin-top: 30px; margin-bottom: 30px;">Keni llogari?<a href="login.html" style="color: white; margin-left: 5px;">Kyçu</a></strong>
             </div>
         </div>
