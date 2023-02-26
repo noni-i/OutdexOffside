@@ -1,6 +1,14 @@
 <?php
+    session_start();
+
     $showAlert = false;
     $exists = false;
+
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: index.php");
+        exit;
+    }
+
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
 
@@ -149,13 +157,13 @@
                         <p style="text-align: left; margin-left: 10px; justify-self: center;">Unë pranoj Termet dhe Kushtet dhe kam lexuar Politikën <br> e Privatësisë.</p>
                 </div>
                 
-                    <button class="button-signup-final" type="submit">  
+                    <button class="button-signup-final" type="submit" style="width: 550px;">  
                         Krijoni llogarinë
                     </button>
                     </form>     
 
                     
-                <strong style="margin-top: 30px; margin-bottom: 30px;">Keni llogari?<a href="login.html" style="color: white; margin-left: 5px;">Kyçu</a></strong>
+                <strong style="margin-top: 30px; margin-bottom: 30px;">Keni llogari?<a href="login.php" style="color: white; margin-left: 5px;">Kyçu</a></strong>
             </div>
         </div>
 

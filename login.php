@@ -1,3 +1,41 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: index.php");
+        exit;
+    }
+
+    require_once "databaza.php";
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        $email = ($_REQUEST['email']);
+        $password = ($_REQUEST['password']);
+
+        $query    = "SELECT * FROM `userat` WHERE email='$email'
+                     AND password='" . md5($password) . "'";
+        $rezultati = mysqli_query($con, $query);
+        $rreshtat = mysqli_num_rows($rezultati);
+
+        $row = mysqli_fetch_array($rezultati);
+
+        if($rreshtat == 1){
+            $username = $row["username"];
+
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"] = $id;
+            $_SESSION["username"] = $username;
+            
+            header("Location: index.php");
+        } else {
+            echo "<script>alert('Email/Passwordi eshte gabim. Provo përsëri');</script>";
+        }
+
+    }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,25 +88,22 @@
       <div class="bodylogin">
         <div class="login">
             <h style="font-size: 30px; padding-top: 30px; margin-bottom: 10px;">Kyçuni</h>
-            
+            <form action="login.php" method="post">
             <div class="email">
                 <p style="text-align: left; margin: 5px 0px 5px 0px;">Email i juaj</p>
                 <input class="input" type="email" name="email" autocomplete="on" id="emailfield" onkeydown="ValidateEmail()">
             </div>
             <div class="password">
                 <p style="text-align: left; margin: 30px 0px 5px 0px;">Passwordi juaj</p>
-                <input class="input" type="password" name="password" autocomplete="on" id="passwordfield" onkeydown="ValidatePassword()">
+                <input class="input" type="password" name="password" autocomplete="on" id="passwordfield">
                 <div style="text-align: left; margin-top: 10px;">
                     <strong ><a href="workprogress.html" style="color: white;">Keni harruar passwordin?</a></strong>
                 </div>
-                <div class="checkbox">
-                    <input type="checkbox" name="showpassword" onclick="showPswd()">
-                    <p style="margin-left: 10px">Shfaq passwordin</p>
-                </div>
             </div>
-            <button class="button-signup" id="bttn" onclick="loginvalid(document.getElementById('emailfield').value, document.getElementById('passwordfield').value)">  
+            <button class="button-signup" id="bttn" style="width:550px; margin-top: 20px;" onclick="loginvalid(document.getElementById('emailfield').value, document.getElementById('passwordfield').value)">  
                 Kyçu
             </button>
+            </form>
             <strong style="margin-top: 30px; margin-bottom: 30px;">Nuk keni llogari?<a href="signup.php" style="color: white; margin-left: 5px;">Regjistrohu</a></strong>
         </div>
     </div>

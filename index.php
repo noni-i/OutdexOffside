@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +47,27 @@
             <img src="Icons/stroke.png">
         </div>
 
-        <div class="login-class">
-            <img id="user-icon" src="Icons/user.png">
-            <a id="login-href" href="login.php">KYCU</a>
-        </div>
+        <?php
+            
+
+            
+            if(empty($_SESSION["loggedin"])){
+                echo '<div class="login-class">
+                <img id="user-icon" src="Icons/user.png">
+                <a id="login-href" href="login.php">KYCU</a>
+                </div>';
+            } else {
+                $username = $_SESSION["username"];
+                echo '<div class="login-class">
+                <a id="login-href" href="user.php">'.$username.'</a>
+                </div>';
+            }
+
+        ?>
+
+
+
+        
         
     </div>
 </div>

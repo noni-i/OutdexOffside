@@ -119,6 +119,12 @@
     text-decoration: none;
 }
 
+#user-href {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+}
+
 .body {
     width: 100%;
     display: flex;
@@ -492,4 +498,10 @@ input[type="checkbox"]:checked{
 
   #login-href:hover{
     color: gray;
+  }
+
+  #bttn-shkyqu:hover{
+    background-color: blue;
+    cursor: pointer;
+    transition: all .5s ease;
   }

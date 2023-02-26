@@ -33,6 +33,15 @@ button.addEventListener('click', () => {
     if(x === true && y === true){
         alert("Validimi u krye me sukses.");
     }else{
-        alert("Forma nuk u plotsue mirë.")
+        alert("Forma nuk u plotsua mirë.")
     }
 })
+
+function showPswd() {
+  var x = document.getElementsById('passwordfield');
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
