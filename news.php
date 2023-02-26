@@ -67,6 +67,7 @@
     <div class="body-news">
     <div class="football-news">
         <h1 style="margin-left: 2%;">Lajmet nga bota e futbollit</h1>
+        <div class="slideshow-container"></div>
         <div id="div-lajmi-par">
         <a class="lajmi-par" target="_blank" href="https://www.bavarianfootballworks.com/2022/12/18/23515244/argentina-leo-messi-world-cup-champions-bayern-munich-france-dayot-upamecano-kingsley-coman-mbappe">
             <img src="Photos/arg-wc.webp" style="width: 700px;" id="photo">
@@ -79,5 +80,53 @@
     </div>
     </div>
 
+
+    <script>
+        const images = [
+        'https://via.placeholder.com/500x300?text=Image+1',
+        'https://via.placeholder.com/500x300?text=Image+2',
+        'https://via.placeholder.com/500x300?text=Image+3',
+        'https://via.placeholder.com/500x300?text=Image+4'
+      ];
+    
+      let slideIndex = 0;
+      const slideshowContainer = document.querySelector('.slideshow-container');
+
+      images.forEach((image, index) => {
+        const slide = document.createElement('div');
+        slide.classList.add('mySlides');
+        if (index === slideIndex) {
+          slide.style.display = 'block';
+        }
+        const img = document.createElement('img');
+        img.src = image;
+        img.style.width = '100%';
+        slide.appendChild(img);
+        const text = document.createElement('div');
+        text.classList.add('text');
+        text.innerHTML = `${index + 1} / ${images.length}`;
+        slide.appendChild(text);
+        slideshowContainer.appendChild(slide);
+      });
+
+      setInterval(() => {
+        slideIndex++;
+        if (slideIndex >= images.length) {
+          slideIndex = 0;
+        }
+        showSlide(slideIndex);
+      }, 7000);
+
+      function showSlide(index) {
+        const slides = document.querySelectorAll('.mySlides');
+        slides.forEach((slide, i) => {
+          if (i === index) {
+            slide.style.display = 'block';
+          } else {
+            slide.style.display = 'none';
+          }
+        });
+      }
+    </script>
 </body>
 </html>
