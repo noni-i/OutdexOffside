@@ -1,6 +1,6 @@
 @font-face {
     font-family: Britanica Bold;
-    src: url('/Fonts/BritanicaBold.ttf');
+    src: url('Fonts/BritanicaBold.ttf');
 }
 
 .navbar{
@@ -170,6 +170,11 @@ ul {
 .date-arrow-button{
     background-color: transparent;
     border: 0px;
+    cursor: pointer;
+}
+
+.date-arrow-button:hover{
+    background-color: rgba(0, 0, 0, .3);
     cursor: pointer;
 }
 
@@ -431,13 +436,12 @@ input[type="checkbox"]:checked{
 .football-news{
     margin-top: 1px;
     background-color: #252122;
-    width: 80%;
+    width: 55%;
     font-family: Britanica;
     color: white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: fit-content;
 }
 
 .lajmi-par{
@@ -601,4 +605,69 @@ input[type="checkbox"]:checked{
 
   .view-more:hover{
     color: gray;
+  }
+
+  .lista-lajmet{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .lajm{
+    width: 32%;
+  }
+
+  .fotot-lajmet:hover{
+    opacity: 0.7;
+  }
+
+  .titujt-lajmet{
+    margin-top: 0px;
+    color: white;
+    text-decoration: underline;
+    width: 300px;
+  }
+
+  .titujt-lajmet:hover{
+    color: gray;
+  }
+
+  .forma-ndeshjes{
+    font-family: Britanica;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 1400px;
+    flex-direction: row;
+  }
+
+  .ligadivider{
+    font-family: Britanica;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+  }
+
+  .dividerat{
+    border-bottom: 1px gray solid;
+    display: flex;
+    width: 100%;
+  }
+
+  .fixture{
+    display: flex;
+    flex-direction: row;
+    font-family: Britanica;
+    color: white;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 88px;
   }

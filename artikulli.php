@@ -1,5 +1,13 @@
 <?php
     session_start();
+
+    require "databaza.php";
+
+    $id=$_GET['id'];
+
+    $query= mysqli_query($con,"SELECT * FROM lajmi WHERE lajmi_id='$id'");
+
+    $rows= mysqli_fetch_assoc($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +48,11 @@
     
             <?php
             
-
+            if(isset($_SESSION["admin"]) and ($_SESSION["admin"])){
+                echo '<div class="login-class">
+                <a style="color: white;" href="dashboard.php">DASHBOARD</a>
+                </div>';
+            }
             
             if(empty($_SESSION["loggedin"])){
                 echo '<div class="login-class">
@@ -63,26 +75,17 @@
         <p>Some text some text some text some text..</p>
       </div>
       <div class="body-artikulli">
-        <h1 style="color: white;font-family: Britanica; justify-self:center; justify-content:center;">hello</h1>
-        <img src="Photos/arg-wc.webp" style="margin-top: 10px; width:fit-content; border-radius:10px;">
+        <h1 style="color: white;font-family: Britanica; justify-self:center; justify-content:center;"><?php echo $rows['lajmi_titull'] ?></h1>
+        <img  style="margin-top: 10px; width:1200px; border-radius:10px;" src="<?php echo $rows['lajmi_foto'] ?>">
         <div class="futboll-lajm">
-            <h1 style="font-size:40px">Bacaj</h1>
-            <p>Bavarezët i dhanë fund dyshimit për fituesin duke i realizuar tre golat që në pjesën e parë.
-
-Eric Maxim Choupo-Moting ishte i pari që shënoi duke e zhbllokuar rezultatin (31’) pas asistimit nga Kingsley Coman.
-
-
-(Foto: Twitter/FC Bayern Munich)
-
-Në golin e dytë (40’), Coman ishte në cilësinë e realizuesit, derisa Thomas Muller e dhuroi asistimin.
-
-Vendasit e shënuan edhe golin e tretë në fund të pjesës së parë (45’+1) përmes Jamal Musiala. Emri i asistuesit ishte i njëjtë, Thomas Muller.</p>
+            <h1 style="font-size:40px"><?php echo $rows['lajmi_titull'] ?></h1>
+            <p><?php echo $rows['lajmi_permbajtja']?></p>
             
         </div>
         <div class="osedivider" style="width: 1000px;">
                     <hr class="divider" style="background-color:white">
                 </div>
-        <p style="color: gray;">Autori</p>
+        <p style="color: gray;"><?php echo $rows['autori']?></p>
         </div>            
       </div>
     

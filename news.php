@@ -1,5 +1,9 @@
 <?php
     session_start();
+
+    require "databaza.php";
+
+    $query= mysqli_query($con,"SELECT * FROM lajmi");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +16,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
     <body style="background-color: #0C0001; zoom: 80%">
-        <div class="navbar">
+        <div class="navbar" style="z-index: 3;">
         <div class="world-cup-announce">
             <p>Duke Ndodhur : <a style="color: white;"  target="_blank" href="https://www.fifa.com/">Botërori 2022</a></p>
             <img id="icon-wc" src="Icons/world-cup.png">
@@ -40,7 +44,11 @@
     
             <?php
             
-
+            if(isset($_SESSION["admin"]) and ($_SESSION["admin"])){
+                echo '<div class="login-class">
+                <a style="color: white;" href="dashboard.php">DASHBOARD</a>
+                </div>';
+            }
             
             if(empty($_SESSION["loggedin"])){
                 echo '<div class="login-class">
@@ -67,66 +75,24 @@
     <div class="body-news">
     <div class="football-news">
         <h1 style="margin-left: 2%;">Lajmet nga bota e futbollit</h1>
-        <div class="slideshow-container"></div>
-        <div id="div-lajmi-par">
-        <a class="lajmi-par" target="_blank" href="https://www.bavarianfootballworks.com/2022/12/18/23515244/argentina-leo-messi-world-cup-champions-bayern-munich-france-dayot-upamecano-kingsley-coman-mbappe">
-            <img src="Photos/arg-wc.webp" style="width: 700px;" id="photo">
-            <div style="display: flex; flex-direction: column; width: fit-content; margin-left: 1%;">
-                <h style="font-size: 30px;" id="titull">Argjentina, Kampione e botës</h>
-                <p style="margin-top: 2%;">Në një lojë dramatike, Argjentina shpallet<br> për herë  të tretë kampione duke fituar përmes penaltive</p>
+            <div class="lista-lajmet">
+              <?php include "slidet.php" ?>
+                <?php
+                    while($rows = mysqli_fetch_assoc($query)){ ?>
+                      <a href="artikulli.php?id=<?php echo $rows['lajmi_id']?>">
+                      <div class="lajm">
+                      <img class="fotot-lajmet" style="width: 300px;" src="<?php echo $rows['lajmi_foto']; ?>">
+                      <p class="titujt-lajmet"><?php echo $rows['lajmi_titull']; ?></p>
+                      </div>
+                      </a>
+                    <?php }
+                ?>
             </div>
-        </a>
     </div>
     </div>
-    </div>
 
 
-    <script>
-        const images = [
-        'https://via.placeholder.com/500x300?text=Image+1',
-        'https://via.placeholder.com/500x300?text=Image+2',
-        'https://via.placeholder.com/500x300?text=Image+3',
-        'https://via.placeholder.com/500x300?text=Image+4'
-      ];
-    
-      let slideIndex = 0;
-      const slideshowContainer = document.querySelector('.slideshow-container');
-
-      images.forEach((image, index) => {
-        const slide = document.createElement('div');
-        slide.classList.add('mySlides');
-        if (index === slideIndex) {
-          slide.style.display = 'block';
-        }
-        const img = document.createElement('img');
-        img.src = image;
-        img.style.width = '100%';
-        slide.appendChild(img);
-        const text = document.createElement('div');
-        text.classList.add('text');
-        text.innerHTML = `${index + 1} / ${images.length}`;
-        slide.appendChild(text);
-        slideshowContainer.appendChild(slide);
-      });
-
-      setInterval(() => {
-        slideIndex++;
-        if (slideIndex >= images.length) {
-          slideIndex = 0;
-        }
-        showSlide(slideIndex);
-      }, 7000);
-
-      function showSlide(index) {
-        const slides = document.querySelectorAll('.mySlides');
-        slides.forEach((slide, i) => {
-          if (i === index) {
-            slide.style.display = 'block';
-          } else {
-            slide.style.display = 'none';
-          }
-        });
-      }
-    </script>
+    <script></script>
+      
 </body>
 </html>

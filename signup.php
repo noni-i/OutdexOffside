@@ -130,7 +130,7 @@
                 </button>
 
                 <div class="osedivider"><hr class="leftline"><p style="color: gray;">apo</p><hr class="rightline"></div>
-                <form action="signup.php" method="post">
+                <form action="signup.php" method="post" id="myForm">
                 <div class="email">
                     <p style="text-align: left; margin: 5px 0px 5px 0px;">Email i juaj</p>
                     <input class="input" type="email" name="email" autocomplete="on" id="emailfield" onkeydown="ValidateEmail()">
@@ -168,5 +168,15 @@
         </div>
 
         <script src="script.js"></script>
+        <script>
+            
+                document.getElementById("myForm").onkeypress = function(e) {
+                 var key = e.charCode || e.keyCode || 0;     
+                 if (key == 13) {
+                   alert("No Enter!");
+                   e.preventDefault();
+                 }
+                } 
+        </script>
 </body>
 </html>

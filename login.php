@@ -22,12 +22,19 @@
 
         if($rreshtat == 1){
             $username = $row["username"];
+            $admin = $row["admin"];
 
+            $_SESSION["admin"] = $admin;
             $_SESSION["loggedin"] = true;
             $_SESSION["id"] = $id;
             $_SESSION["username"] = $username;
             
-            header("Location: index.php");
+            if($_SESSION["admin"] == true){
+                header("Location: dashboard.php");
+            }else{
+                header("Location: index.php");
+            } 
+
         } else {
             echo "<script>alert('Email/Passwordi eshte gabim. Provo përsëri');</script>";
         }

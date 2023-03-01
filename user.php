@@ -41,6 +41,13 @@
         </div>
 
         <?php
+
+            if(isset($_SESSION["admin"]) and ($_SESSION["admin"])){
+                echo '<div class="login-class">
+                <a style="color: white;" href="dashboard.php">DASHBOARD</a>
+                </div>';
+            }
+
             if($_SESSION["loggedin"] == false){
                 echo '<div class="login-class">
                 <img id="user-icon" src="Icons/user.png">

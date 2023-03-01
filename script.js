@@ -1,11 +1,10 @@
+
 var dayNames = ['E diel', 'E Hene', 'E Marte', 'E Merkure', 'E Enjte', 'E Premte', 'E Shtune'],
     monthNames = ['Janar', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qershor', 'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nëntor', 'Dhjetor'];
 
 d = new Date();
 
 const monthHeader = document.getElementById('month-header');
-
-document.getElementById('score-date').innerHTML = toString(getFormattedDate(d));
 
 var currentDate = new Date();
 
@@ -31,15 +30,6 @@ function getFormattedDate(date) {
   return month + '/' + day + '/' + year;
 }
 
-$(function() {
-    $("#datepicker").datepicker();
-
-
-      $("#datepicker").datepicker('setDate', new Date());
-    
-      console.log(currentDate);
-  });
-
   console.log(d);
 
   function DateToString(x){
@@ -48,7 +38,7 @@ $(function() {
         return 'Ndeshjet e Sotme'
         break;
       case yesterday:
-        return 'Ndeshjet e parDjeshme'
+        return 'Ndeshjet e Djeshme'
         break;
       case tomorrow:
           return 'Ndeshjet e Nesërme'
@@ -69,115 +59,10 @@ $(function() {
   $( "#datepicker" ).datepicker({
     onSelect: function(date){
       monthHeader.innerHTML = DateToString(date);
-      document.getElementById('score-date').innerHTML = toString(date);
-      
-      var collect = document.getElementsByClassName("match");
 
-      console.log(collect);
-
-      var d = date;
-
-      fetch('scores.json')
-      .then(response => response.json())
-      .then(data => {
-        var games = data;
-        console.log(games.hasOwnProperty(d));
-        console.log(games["12/29/2022"]['LaLiga'][0])
-        if(games.hasOwnProperty(d)){
-        document.getElementById('esmatches').innerHTML = "";
-        if (!games[d].hasOwnProperty("Premier League")) {
-          document.getElementById('plmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[0].style.display = 'none';
-        } else{
-          if(games[d]['Premier League'] != null && collect.length == 0){
-            document.getElementsByClassName('ligat')[0].style.display = 'flex';
-            const divPL = document.getElementById("plmatches");
-            for (i = 0; i < games[d]['Premier League'].length; i++) {
-              const a = document.createElement("p");
-              a.innerHTML = games[d]['Premier League'][i];
-              a.classList.add("match");
-              divPL.appendChild(a);
-            }
-          } else {
-            document.getElementById('plmatches').innerHTML = "";
-            if(games[d]['Premier League'] != null && collect.length == 0){
-              document.getElementsByClassName('ligat')[0].style.display = 'flex';
-              const divPL = document.getElementById("plmatches");
-              for (i = 0; i < games[d]['Premier League'].length; i++) {
-                const a = document.createElement("p");
-                a.innerHTML = games[d]['Premier League'][i];
-                a.classList.add("match");
-                divPL.appendChild(a);
-              }
-            }
-          }
-        }
-        if(!games[d].hasOwnProperty("World Cup")){
-          document.getElementById('wcmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[1].style.display = 'none';
-        } else {
-          if(games[d]['World Cup'] != null && collect.length == 0){
-            document.getElementsByClassName('ligat')[1].style.display = 'flex';
-            const divPL = document.getElementById("wcmatches");
-            for (i = 0; i < games[d]['World Cup'].length; i++) {
-              const a = document.createElement("p");
-              a.innerHTML = games[d]['World Cup'][i];
-              a.classList.add("match");
-              divPL.appendChild(a);
-            }
-          } else {
-            document.getElementById('wcmatches').innerHTML = "";
-            if(games[d]['World Cup'] != null && collect.length == 0){
-              document.getElementsByClassName('ligat')[1].style.display = 'flex';
-              const divPL = document.getElementById("wcmatches");
-              for (i = 0; i < games[d]['World Cup'].length; i++) {
-                const a = document.createElement("p");
-                a.innerHTML = games[d]['World Cup'][i];
-                a.classList.add("match");
-                divPL.appendChild(a);
-              }
-            }
-          }
-        }
-        if(!games[d].hasOwnProperty("LaLiga")){
-          document.getElementById('esmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[2].style.display = 'none';
-        } else {
-          if(games[d]['LaLiga'] != null && collect.length == 0){
-            document.getElementsByClassName('ligat')[2].style.display = 'flex';
-            const divPL = document.getElementById("esmatches");
-            for (i = 0; i < games[d]['LaLiga'].length; i++) {
-              const a = document.createElement("p");
-              a.innerHTML = games[d]['LaLiga'][i];
-              a.classList.add("match");
-              divPL.appendChild(a);
-            }
-          } else {
-            document.getElementById('esmatches').innerHTML = "";
-            if(games[d]['LaLiga'] != null && collect.length == 0){
-              document.getElementsByClassName('ligat')[2].style.display = 'flex';
-              const divPL = document.getElementById("esmatches");
-              for (i = 0; i < games[d]['LaLiga'].length; i++) {
-                const a = document.createElement("p");
-                a.innerHTML = games[d]['LaLiga'][i];
-                a.classList.add("match");
-                divPL.appendChild(a);
-              }
-            }
-          }
-        }
-        }else{
-          document.getElementById('esmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[2].style.display = 'none';
-          document.getElementById('wcmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[1].style.display = 'none';
-          document.getElementById('plmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[0].style.display = 'none';
-          document.getElementById('esmatches').innerHTML = "Nuk u gjet asnjë ndeshje. Zgjedh një datë tjetër";
-        }
-      });
-    }    
-  })
+      $('#myform').submit();    
+    }
+    })
    
   function showPswd() {
     var x = document.getElementById("passwordfield");
@@ -241,111 +126,3 @@ function unlockButton(){
     document.getElementsByClassName('button-signup')[3].className = 'button-signup-final';
   }
 }  
-
-
-fetch('scores.json')
-      .then(response => response.json())
-      .then(data => {
-        
-        var collect = document.getElementsByClassName("match");
-
-        var games = data;
-        var x = getFormattedDate(d);
-        if(games.hasOwnProperty(x)){
-          PL:
-        if (!games[x].hasOwnProperty("Premier League")) {
-          document.getElementById('plmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[0].style.display = 'none';
-        } else{
-          if(games[x]['Premier League'] != null && collect.length == 0){
-            document.getElementsByClassName('ligat')[0].style.display = 'flex';
-            const divPL = document.getElementById("plmatches");
-            for (i = 0; i < games[x]['Premier League'].length; i++) {
-              const a = document.createElement("p");
-              a.innerHTML = games[x]['Premier League'][i];
-              a.classList.add("match");
-              divPL.appendChild(a);
-            }
-          } else {
-            document.getElementById('plmatches').innerHTML = "";
-            if(games[x]['Premier League'] != null && collect.length == 0){
-              document.getElementsByClassName('ligat')[0].style.display = 'flex';
-              const divPL = document.getElementById("plmatches");
-              for (i = 0; i < games[x]['Premier League'].length; i++) {
-                const a = document.createElement("p");
-                a.innerHTML = games[x]['Premier League'][i];
-                a.classList.add("match");
-                divPL.appendChild(a);
-              }
-            }
-          }
-        }
-        if(!games[d].hasOwnProperty("World Cup")){
-          document.getElementById('wcmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[1].style.display = 'none';
-        } else {
-          if(games[x]['World Cup'] != null && collect.length == 0){
-            document.getElementsByClassName('ligat')[1].style.display = 'flex';
-            const divPL = document.getElementById("wcmatches");
-            for (i = 0; i < games[x]['World Cup'].length; i++) {
-              const a = document.createElement("p");
-              a.innerHTML = games[x]['World Cup'][i];
-              a.classList.add("match");
-              divPL.appendChild(a);
-            }
-          } else {
-            document.getElementById('wcmatches').innerHTML = "";
-            if(games[x]['World Cup'] != null && collect.length == 0){
-              document.getElementsByClassName('ligat')[1].style.display = 'flex';
-              const divPL = document.getElementById("wcmatches");
-              for (i = 0; i < games[x]['World Cup'].length; i++) {
-                const a = document.createElement("p");
-                a.innerHTML = games[x]['World Cup'][i];
-                a.classList.add("match");
-                divPL.appendChild(a);
-              }
-            }
-          }
-        }
-        Esp:
-        if(!games[d].hasOwnProperty("LaLiga")){
-          document.getElementById('esmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[2].style.display = 'none';
-        } else {
-          if(games[d]['LaLiga'] != null && collect.length == 0){
-            document.getElementsByClassName('ligat')[2].style.display = 'flex';
-            const divPL = document.getElementById("esmatches");
-            for (i = 0; i < games[x]['LaLiga'].length; i++) {
-              const a = document.createElement("p");
-              a.innerHTML = games[x]['LaLiga'][i];
-              a.classList.add("match");
-              divPL.appendChild(a);
-            }
-          } else {
-            document.getElementById('esmatches').innerHTML = "";
-            if(games[x]['LaLiga'] != null && collect.length == 0){
-              document.getElementsByClassName('ligat')[2].style.display = 'flex';
-              const divPL = document.getElementById("esmatches");
-              for (i = 0; i < games[x]['LaLiga'].length; i++) {
-                const a = document.createElement("p");
-                a.innerHTML = games[x]['LaLiga'][i];
-                a.classList.add("match");
-                divPL.appendChild(a);
-              }
-            }
-          }
-        }
-        }else{
-          document.getElementById('esmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[2].style.display = 'none';
-          document.getElementById('wcmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[1].style.display = 'none';
-          document.getElementById('plmatches').innerHTML = "";
-          document.getElementsByClassName('ligat')[0].style.display = 'none';
-          document.getElementById('esmatches').innerHTML = "Nuk u gjet asnjë ndeshje. Zgjedh një datë tjetër";
-        }
-      });
-
-      
-
-      

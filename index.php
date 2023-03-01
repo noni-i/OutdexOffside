@@ -1,5 +1,93 @@
 <?php
     session_start();
+
+    require "databaza.php";
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $dataSelektuar = $_REQUEST['datepicker'];
+    
+        $dataQuery = date("Y-m-d", strtotime($dataSelektuar));
+        
+        #Angli
+        $sqlPL = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'Premier League' ORDER BY `rezultatet`.`orari` ASC";
+        $queryPL = mysqli_query($con, $sqlPL);
+
+        $flag = mysqli_num_rows($queryPL);
+
+        #Spanje
+        $sqlLL = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'LaLiga' ORDER BY `rezultatet`.`orari` ASC";
+        $queryLL = mysqli_query($con, $sqlLL);
+
+        $flages = mysqli_num_rows($queryLL);
+
+        #Itali
+        $sqlSA = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'Serie A' ORDER BY `rezultatet`.`orari` ASC";
+        $querySA = mysqli_query($con, $sqlSA);
+
+        $flagit = mysqli_num_rows($querySA);
+
+        #Kosovë
+        $sqlKS = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'Superliga' ORDER BY `rezultatet`.`orari` ASC";
+        $queryKS = mysqli_query($con, $sqlKS);
+
+        $flagks = mysqli_num_rows($queryKS);
+    }else{
+        $dataQuery = date("Y-m-d");
+        
+        #Angli
+        $sqlPL = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'Premier League' ORDER BY `rezultatet`.`orari` ASC";
+        $queryPL = mysqli_query($con, $sqlPL);
+
+        $flag = mysqli_num_rows($queryPL);
+
+        #Spanje
+        $sqlLL = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'LaLiga' ORDER BY `rezultatet`.`orari` ASC";
+        $queryLL = mysqli_query($con, $sqlLL);
+
+        $flages = mysqli_num_rows($queryLL);
+
+        #Itali
+        $sqlSA = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'Serie A' ORDER BY `rezultatet`.`orari` ASC";
+        $querySA = mysqli_query($con, $sqlSA);
+
+        $flagit = mysqli_num_rows($querySA);
+        
+        #Kosovë
+        $sqlKS = "SELECT * FROM rezultatet WHERE CAST(orari AS date) = '$dataQuery' AND liga = 'Superliga' ORDER BY `rezultatet`.`orari` ASC";
+        $queryKS = mysqli_query($con, $sqlKS);
+
+        $flagks = mysqli_num_rows($queryKS);
+    }
+
+    function toString($data){
+        $arrayMuajt = ['Janar', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qershor', 'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nëntor', 'Dhjetor'];
+        $strArray = explode("/", $data);
+        $m = $strArray[0] - 1;
+        return $strArray[1]." ".$arrayMuajt[$m]." ".$strArray[2];
+      }
+
+      
+
+      function DateToString($x){
+        $today = date("m/d/Y");
+        $yesterday = date("m/d/Y", strtotime("-1 days"));
+        $tomorrow = date("m/d/Y", strtotime("+1 days"));
+        
+        switch($x) {
+          case $today:
+            return 'Ndeshjet e Sotme';
+            break;
+          case $yesterday:
+            return 'Ndeshjet e Djeshme';
+            break;
+          case $tomorrow:
+              return 'Ndeshjet e Nesërme';
+              break;
+          default:
+            return 'Ndeshjet';
+        }  
+      }
+      
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +137,12 @@
 
         <?php
             
+            if(isset($_SESSION["admin"]) and ($_SESSION["admin"])){
+                echo '<div class="login-class">
+                <a style="color: white;" href="dashboard.php">DASHBOARD</a>
+                </div>';
+            }
 
-            
             if(empty($_SESSION["loggedin"])){
                 echo '<div class="login-class">
                 <img id="user-icon" src="Icons/user.png">
@@ -83,55 +175,191 @@
                     
                     <div class="date">
                         <ul style="padding-left: 6%;" list-style-type="none">
-                        <h1 id="month-header">Ndeshjet e sotme</h1>
-                        <p1 id="score-date"></p1>
+                        <h1 id="month-header"><?php if($_SERVER["REQUEST_METHOD"] == "POST"){echo DateToString($dataSelektuar);} else { echo "Ndeshjet e Sotme";} ?></h1>
+                        <p1 id="score-date"><?php if($_SERVER["REQUEST_METHOD"] == "POST"){echo toString($dataSelektuar);} else { echo toString(date("m/d/Y"));} ?></p1>
                         </ul>
                         <div class="data-majtas">
+                        <form id="myform" action="<?php $_PHP_SELF ?>" method="POST">
                             <!--<button class="date-arrow-button" type="button"><img class="arrow-buttons" src="Icons/left-arrow.png"></button>-->
-                            
-                            <input type="text" id="datepicker">
+                            <input type="text" name="datepicker" id="datepicker" value="<?php if($_SERVER["REQUEST_METHOD"] == "POST"){echo $dataSelektuar;} else { echo date("m/d/Y");}?>">
                             <img src="Icons/calendar.png" id="calendar-icon">
                             <!--<button class="date-arrow-button" type="button"><img class="arrow-buttons" src="Icons/right-arrow.png"></button>-->
+                        </form>
                         </div>
                     </div>
-                </li>
+                    <?php if($flag > 0) {?>
                 
-                <li>
-                    <div class="ligat">
-                            <img src="Icons/eng.png" class="table-icons">
-                            <p1 class="tableleagues">Premier League</p1>
+                    <li class="dividerat">
+                    <img src="Icons/eng.png" style="height: 25px; margin-top: 9px; margin-left: 10px;">
+                    <p class="ligadivider">Angli - Premier League</p>
+                </li>
+
+                    <?php }; 
+                    
+                        if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                    while($rows = mysqli_fetch_assoc($queryPL)){?>
+                        <li class="dividerat">
+                    <div class="fixture">
+                        <p><?php echo $rows['ekipi_vendas']?></p>
+                        <img src="Club Icon/<?php echo $rows['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                        <p style="color: <?php if($rows['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rows['rezultati'] == ""){echo date('H:i', strtotime($rows['orari']));}else{ echo $rows['rezultati'];} ?></p>
+                        <img src="Club Icon/<?php echo $rows['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                        <p><?php echo $rows['ekipi_mysafir']?></p>
                     </div>
+                </li>
+
+
+                    <?php };
+
+                        }else{
+                            while($rows = mysqli_fetch_assoc($queryPL)){?>
+                                <li class="dividerat">
+                            <div class="fixture">
+                                <p><?php echo $rows['ekipi_vendas']?></p>
+                                <img src="Club Icon/<?php echo $rows['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                                <p style="color: <?php if($rows['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rows['rezultati'] == ""){echo date('H:i', strtotime($rows['orari']));}else{ echo $rows['rezultati'];} ?></p>
+                                <img src="Club Icon/<?php echo $rows['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                                <p><?php echo $rows['ekipi_mysafir']?></p>
+                            </div>
+                        </li>
+        
+        
+                            <?php }
+                        }
+                    ?>
+                    <?php if($flages > 0) {?>
                 
-                </li>
-                <li>
-                    <div class="matches" id="plmatches"></div>
-                </li>
-                <li>
-                    <div class="ligat">
-                            <img src="Icons/int.png" class="table-icons">
-                            <p1 class="tableleagues">World Cup</p1>
-                    </div>
-                </li>
-                <li>
-                    <div class="matches" id="wcmatches"></div>
-                </li>
-                <li>
-                    <div class="ligat">
-                            <img src="Icons/esp.png" class="table-icons">
-                            <p1 class="tableleagues">LaLiga</p1>
-                    </div>
-                </li>
-                <li>
-                    <div class="matches" id="esmatches"></div>
-                </li>
-                <li>
-                    <div class="matches" id="nomatches"></div>
-                </li>
+                <li class="dividerat">
+                <img src="Icons/esp.png" style="height: 25px; margin-top: 9px; margin-left: 10px;">
+                <p class="ligadivider">Spanjë - LaLiga</p>
+            </li>
+
+                <?php };if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+while($rowsLL = mysqli_fetch_assoc($queryLL)){?>
+    <li class="dividerat">
+<div class="fixture">
+    <p><?php echo $rowsLL['ekipi_vendas']?></p>
+    <img src="Club Icon/<?php echo $rowsLL['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+    <p style="color: <?php if($rowsLL['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rowsLL['rezultati'] == ""){echo date('H:i', strtotime($rowsLL['orari']));}else{ echo $rowsLL['rezultati'];} ?></p>
+    <img src="Club Icon/<?php echo $rowsLL['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+    <p><?php echo $rowsLL['ekipi_mysafir']?></p>
+</div>
+</li>
+
+
+<?php };
+
+    }else{
+        while($rowsLL = mysqli_fetch_assoc($queryLL)){?>
+            <li class="dividerat">
+        <div class="fixture">
+            <p><?php echo $rowsLL['ekipi_vendas']?></p>
+            <img src="Club Icon/<?php echo $rowsLL['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+            <p style="color: <?php if($rowsLL['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rowsLL['rezultati'] == ""){echo date('H:i', strtotime($rowsLL['orari']));}else{ echo $rowsLL['rezultati'];} ?></p>
+            <img src="Club Icon/<?php echo $rowsLL['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+            <p><?php echo $rowsLL['ekipi_mysafir']?></p>
+        </div>
+    </li>
+
+
+        <?php }
+    }
+?>
+
+
+<?php if($flagit > 0) {?>
+                
+                <li class="dividerat">
+                <img src="Icons/ita.png" style="height: 25px; margin-top: 9px; margin-left: 10px;">
+                <p class="ligadivider">Itali - Serie A</p>
+            </li>
+
+                <?php }; 
+                
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                while($rowsSA = mysqli_fetch_assoc($querySA)){?>
+                    <li class="dividerat">
+                <div class="fixture">
+                    <p><?php echo $rowsSA['ekipi_vendas']?></p>
+                    <img src="Club Icon/<?php echo $rowsSA['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                    <p style="color: <?php if($rowsSA['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rowsSA['rezultati'] == ""){echo date('H:i', strtotime($rowsSA['orari']));}else{ echo $rowsSA['rezultati'];} ?></p>
+                    <img src="Club Icon/<?php echo $rowsSA['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                    <p><?php echo $rowsSA['ekipi_mysafir']?></p>
+                </div>
+            </li>
+
+
+                <?php };
+
+                    }else{
+                        while($rowsSA = mysqli_fetch_assoc($querySA)){?>
+                            <li class="dividerat">
+                        <div class="fixture">
+                            <p><?php echo $rowsSA['ekipi_vendas']?></p>
+                            <img src="Club Icon/<?php echo $rowsSA['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                            <p style="color: <?php if($rowsSA['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rowsSA['rezultati'] == ""){echo date('H:i', strtotime($rowsSA['orari']));}else{ echo $rowsSA['rezultati'];} ?></p>
+                            <img src="Club Icon/<?php echo $rowsSA['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                            <p><?php echo $rowsSA['ekipi_mysafir']?></p>
+                        </div>
+                    </li>
+    
+    
+                        <?php }
+                    }
+                ?>
+
+
+
+<?php if($flagks > 0) {?>
+                
+                <li class="dividerat">
+                <img src="Icons/kos.png" style="height: 25px; margin-top: 9px; margin-left: 10px;">
+                <p class="ligadivider">Kosovë - Superliga</p>
+            </li>
+
+                <?php }; 
+                
+                    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+                while($rowsks = mysqli_fetch_assoc($queryKS)){?>
+                    <li class="dividerat">
+                <div class="fixture">
+                    <p><?php echo $rowsks['ekipi_vendas']?></p>
+                    <img src="Club Icon/<?php echo $rowsks['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                    <p style="color: <?php if($rowsks['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rowsks['rezultati'] == ""){echo date('H:i', strtotime($rowsks['orari']));}else{ echo $rowsks['rezultati'];} ?></p>
+                    <img src="Club Icon/<?php echo $rowsks['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                    <p><?php echo $rowsks['ekipi_mysafir']?></p>
+                </div>
+            </li>
+
+
+                <?php };
+
+                    }else{
+                        while($rowsks = mysqli_fetch_assoc($queryKS)){?>
+                            <li class="dividerat">
+                        <div class="fixture">
+                            <p><?php echo $rowsks['ekipi_vendas']?></p>
+                            <img src="Club Icon/<?php echo $rowsks['ekipi_vendas']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                            <p style="color: <?php if($rowsks['rezultati'] == ""){echo "gray";}else{echo "white";}?>; width: 50px;"><?php if($rowsks['rezultati'] == ""){echo date('H:i', strtotime($rowsks['orari']));}else{ echo $rowsks['rezultati'];} ?></p>
+                            <img src="Club Icon/<?php echo $rowsks['ekipi_mysafir']?>.png" style="height: 30px; margin-left: 10px; margin-right: 10px;">
+                            <p><?php echo $rowsks['ekipi_mysafir']?></p>
+                        </div>
+                    </li>
+    
+    
+                        <?php }
+                    }
+                ?>
+
             </ul>
         </div>
 
         <div class="top-leagues">
-            <h1 id="topleagues">Ligat kryesore</h1>
+            <h1 id="topleagues">Ligat Kryesore</h1>
 
             <div class="league-href">
                 <ul>
@@ -179,9 +407,8 @@
             </div>
         </div>
     </diV>
-
-    
-        
+ 
     <script src="script.js"></script>
 </body>
 </html>
+
