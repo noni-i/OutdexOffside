@@ -45,16 +45,16 @@ Thank you for checking out my Football Live Score and News web application!
 # **Photos**
 
 **Scores**  
-![image](https://github.com/noni-i/OutdexOffside/assets/120342606/8000ce10-c00d-42f8-b7ee-4bff5901324f)
+![Screenshot 2023-06-26 214513](https://github.com/noni-i/OutdexOffside/assets/120342606/5760d27e-88bd-4c19-8827-6e67fd3e9e99)
 
 **News**  
-![image](https://github.com/noni-i/OutdexOffside/assets/120342606/660da1b2-222e-4e8a-99a0-0c27b84acd23)
+![Screenshot 2023-06-26 214642](https://github.com/noni-i/OutdexOffside/assets/120342606/8713082d-e2dc-4a37-bf37-85d71fdf790c)
 
 **News Article**  
-![image](https://github.com/noni-i/OutdexOffside/assets/120342606/140ea90d-a177-4ea4-bb90-36a2d0cd059a)
+![Screenshot 2023-06-26 214837](https://github.com/noni-i/OutdexOffside/assets/120342606/0cd22847-f2ff-4e55-9634-4513daf80467)
 
 **Login**  
-![image](https://github.com/noni-i/OutdexOffside/assets/120342606/a706febb-7987-49db-beca-030852845f0c)
+![Screenshot 2023-06-26 214921](https://github.com/noni-i/OutdexOffside/assets/120342606/4203b5be-4ab7-4e6a-9df7-d3b86996b62b)
 
 **Dashboard**  
 ![Screenshot 2023-06-26 204901](https://github.com/noni-i/OutdexOffside/assets/120342606/3ed992ee-834c-4edf-a9bc-814b550c797b)
