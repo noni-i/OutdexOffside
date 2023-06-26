@@ -57,7 +57,8 @@ Thank you for checking out my Football Live Score and News web application!
 ![image](https://github.com/noni-i/OutdexOffside/assets/120342606/a706febb-7987-49db-beca-030852845f0c)
 
 **Dashboard**  
-![image](https://github.com/noni-i/OutdexOffside/assets/120342606/4be47ab2-70a5-4bbc-9494-90cc9c7ee5aa)
+![Screenshot 2023-06-26 204901](https://github.com/noni-i/OutdexOffside/assets/120342606/3ed992ee-834c-4edf-a9bc-814b550c797b)
+
 
 
 
