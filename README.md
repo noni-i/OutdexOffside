@@ -40,3 +40,26 @@ This project was developed by Erjon Ahmeti for a web assignment.
 If you have any questions or suggestions, please feel free to contact me at erjonahmeti17@gmail.com.  
 
 Thank you for checking out my Football Live Score and News web application!  
+
+
+# **Photos**
+
+**Scores**  
+![image](https://github.com/noni-i/OutdexOffside/assets/120342606/8000ce10-c00d-42f8-b7ee-4bff5901324f)
+
+**News**  
+![image](https://github.com/noni-i/OutdexOffside/assets/120342606/660da1b2-222e-4e8a-99a0-0c27b84acd23)
+
+**News Article**  
+![image](https://github.com/noni-i/OutdexOffside/assets/120342606/140ea90d-a177-4ea4-bb90-36a2d0cd059a)
+
+**Login**  
+![image](https://github.com/noni-i/OutdexOffside/assets/120342606/a706febb-7987-49db-beca-030852845f0c)
+
+**Dashboard**  
+![image](https://github.com/noni-i/OutdexOffside/assets/120342606/4be47ab2-70a5-4bbc-9494-90cc9c7ee5aa)
+
+
+
+
+
